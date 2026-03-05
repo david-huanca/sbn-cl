@@ -1,0 +1,183 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import { site } from '../../data/site';
+---
+
+<section id="contacto" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <SectionTitle
+      title="Contáctanos"
+      subtitle="Estamos aquí para responder tus preguntas sobre nuestros programas académicos y proceso de admisión."
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <!-- Datos de contacto -->
+      <div>
+        <h3 class="font-serif text-2xl font-bold text-charcoal mb-8">
+          Información de contacto
+        </h3>
+
+        <div class="space-y-6">
+          <!-- Dirección -->
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-lg bg-nazarene-50 flex items-center justify-center flex-shrink-0">
+              <svg class="h-5 w-5 text-nazarene-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-charcoal mb-1">Dirección</p>
+              <p class="text-warmgray text-sm">{site.address}</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-lg bg-nazarene-50 flex items-center justify-center flex-shrink-0">
+              <svg class="h-5 w-5 text-nazarene-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-charcoal mb-1">Correo electrónico</p>
+              <a href={`mailto:${site.email}`} class="text-nazarene-600 hover:text-nazarene-700 text-sm transition-colors duration-200">
+                {site.email}
+              </a>
+            </div>
+          </div>
+
+          <!-- Teléfono -->
+          <div class="flex items-start gap-4">
+            <div class="h-10 w-10 rounded-lg bg-nazarene-50 flex items-center justify-center flex-shrink-0">
+              <svg class="h-5 w-5 text-nazarene-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-charcoal mb-1">Teléfono</p>
+              <a href={`tel:${site.phone}`} class="text-nazarene-600 hover:text-nazarene-700 text-sm transition-colors duration-200">
+                {site.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horario de atención -->
+        <div class="mt-10 p-6 bg-cream rounded-xl border border-stone-200">
+          <h4 class="font-semibold text-charcoal mb-4 flex items-center gap-2">
+            <svg class="h-5 w-5 text-nazarene-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Horario de atención
+          </h4>
+          <div class="space-y-2 text-sm text-warmgray">
+            <div class="flex justify-between">
+              <span>Lunes a Viernes</span>
+              <span class="font-medium text-charcoal">9:00 – 18:00</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Sábado</span>
+              <span class="font-medium text-charcoal">9:00 – 13:00</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Domingo</span>
+              <span class="font-medium text-warmgray">Cerrado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div>
+        <form
+          action="https://formspree.io/f/xpwdkvvk"
+          method="POST"
+          class="space-y-6 bg-cream rounded-2xl p-8 border border-stone-200"
+        >
+          <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">
+            Envíanos un mensaje
+          </h3>
+          <p class="text-sm text-warmgray -mt-4 mb-2">
+            Te responderemos a la brevedad posible.
+          </p>
+
+          <div>
+            <label for="nombre" class="block text-sm font-medium text-charcoal mb-2">
+              Nombre completo <span class="text-nazarene-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              autocomplete="name"
+              placeholder="Tu nombre completo"
+              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-charcoal mb-2">
+              Correo electrónico <span class="text-nazarene-600">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="tu@correo.com"
+              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+            />
+          </div>
+
+          <div>
+            <label for="telefono" class="block text-sm font-medium text-charcoal mb-2">
+              Teléfono
+            </label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              autocomplete="tel"
+              placeholder="+56 9 1234 5678"
+              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+            />
+          </div>
+
+          <div>
+            <label for="mensaje" class="block text-sm font-medium text-charcoal mb-2">
+              Mensaje <span class="text-nazarene-600">*</span>
+            </label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              required
+              rows={5}
+              placeholder="Cuéntanos en qué podemos ayudarte..."
+              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-4 bg-nazarene-600 text-white font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-base"
+          >
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            Enviar mensaje
+          </button>
+
+          <p class="text-xs text-warmgray text-center">
+            Al enviar este formulario, aceptas nuestra política de privacidad.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import MisionVision from '../components/sections/MisionVision.astro';
+import Programas from '../components/sections/Programas.astro';
+import Noticias from '../components/sections/Noticias.astro';
+import Contacto from '../components/sections/Contacto.astro';
+---
+
+<BaseLayout
+  title="Seminario Bíblico Nazareno de Chile — Formación Teológica Wesleyana"
+  description="El Seminario Bíblico Nazareno de Chile ofrece formación teológica integral en la tradición wesleyana-nazarena. Licenciatura, Bachillerato, Diploma y Extensión ministerial."
+>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <MisionVision />
+    <Programas />
+    <Noticias />
+    <Contacto />
+  </main>
+  <Footer />
+</BaseLayout>

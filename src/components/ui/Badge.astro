@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'red' | 'gold' | 'gray' | 'green';
+  class?: string;
+}
+
+const { variant = 'red', class: className = '' } = Astro.props;
+
+const variants = {
+  red: 'bg-nazarene-50 text-nazarene-700 ring-1 ring-nazarene-200',
+  gold: 'bg-amber-50 text-gold-600 ring-1 ring-amber-200',
+  gray: 'bg-stone-100 text-warmgray ring-1 ring-stone-200',
+  green: 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200',
+};
+
+const classes = `inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${variants[variant]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>

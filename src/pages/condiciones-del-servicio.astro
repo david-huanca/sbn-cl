@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<BaseLayout
+  title="Condiciones del Servicio — Seminario Bíblico Nazareno de Chile"
+  description="Condiciones del servicio del SGA - Sistema de Gestión Académica del Seminario Bíblico Nazareno."
+>
+  <Header />
+
+  <main class="bg-cream min-h-screen">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+      <div class="mb-10">
+        <a href="/" class="text-sm text-nazarene-600 hover:text-nazarene-700 transition-colors duration-200">&larr; Volver al inicio</a>
+      </div>
+
+      <h1 class="font-serif text-4xl font-black text-charcoal mb-3">Condiciones del Servicio</h1>
+      <p class="text-sm text-warmgray mb-12">Última actualización: 05-03-2026</p>
+
+      <div class="prose prose-stone max-w-none space-y-8 text-warmgray leading-relaxed">
+
+        <section>
+          <p>Las presentes Condiciones del Servicio regulan el uso de la plataforma SGA del Seminario Bíblico Nazareno, aplicable a alumnos, profesores y personal administrativo.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">1. Aceptación de las Condiciones</h2>
+          <p>Acceder y usar el SGA implica aceptar estas condiciones. Los usuarios que no estén de acuerdo deben abstenerse de usar la plataforma.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">2. Finalidad del SGA</h2>
+          <p>El SGA funciona como herramienta interna para gestionar procesos académicos, incluyendo cursos, clases, matrículas, calificaciones y comunicaciones.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">3. Usuarios Autorizados</h2>
+          <p>Solo pueden acceder usuarios autorizados:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Alumnos matriculados en el Seminario</li>
+            <li>Profesores y tutores</li>
+            <li>Personal administrativo y de gestión</li>
+          </ul>
+          <p class="mt-3">Cada usuario debe mantener confidencial sus credenciales de acceso.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">4. Uso Adecuado de la Plataforma</h2>
+          <p>Los usuarios se comprometen a:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>No utilizar para fines ilícitos, fraudulentos o deshonestos</li>
+            <li>No acceder a datos sin permisos</li>
+            <li>No introducir contenidos que vulneren derechos de terceros</li>
+            <li>No dañar la infraestructura técnica</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">5. Contenido y Exactitud</h2>
+          <p>El SGA muestra información gestionada por el Seminario. Se realizan esfuerzos para mantenerla actualizada, pero pueden ocurrir errores. La información oficial prevalece.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">6. Protección de Datos</h2>
+          <p>El tratamiento de datos personales se rige por la <a href="/politica-de-privacidad" class="text-nazarene-600 hover:text-nazarene-700 underline">Política de Privacidad</a> del SGA.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">7. Disponibilidad del Servicio</h2>
+          <p>El Seminario procura mantener el SGA disponible continuamente, pero no garantiza ausencia de interrupciones técnicas.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">8. Limitación de Responsabilidad</h2>
+          <p>El Seminario no es responsable por daños derivados del uso indebido, fallos técnicos o uso de información para fines no académicos.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">9. Modificaciones de Condiciones</h2>
+          <p>El Seminario puede modificar estas condiciones cuando sea necesario. Las versiones actualizadas estarán disponibles en esta página.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">10. Ley Aplicable</h2>
+          <p>Las condiciones se rigen por la normativa de la jurisdicción donde opera el Seminario.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">11. Contacto</h2>
+          <p>Para consultas: <a href="mailto:sga@sbn.cl" class="text-nazarene-600 hover:text-nazarene-700 underline">sga@sbn.cl</a> o canales oficiales (secretaría académica o administración).</p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

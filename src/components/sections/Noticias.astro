@@ -1,0 +1,77 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import { noticias, formatFecha } from '../../data/noticias';
+
+const categoryColors: Record<string, 'red' | 'gold' | 'gray' | 'green'> = {
+  'Académico': 'red',
+  'Evento': 'gold',
+  'Graduación': 'green',
+};
+---
+
+<section id="noticias" class="py-20 lg:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <SectionTitle
+      title="Noticias y Eventos"
+      subtitle="Mantente al día con lo que sucede en nuestra comunidad académica."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {noticias.map((noticia) => (
+        <Card hover={true} class="flex flex-col">
+          <!-- Imagen placeholder -->
+          <div class="aspect-video overflow-hidden bg-nazarene-100">
+            <div
+              class="w-full h-full flex items-center justify-center"
+              style="background: linear-gradient(135deg, #991B1B 0%, #B91C1C 100%);"
+            >
+              <div class="text-center text-white p-4 opacity-70">
+                <svg class="h-12 w-12 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="text-xs font-medium">SBN Chile</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <!-- Categoría y fecha -->
+            <div class="flex items-center justify-between mb-4">
+              <Badge variant={categoryColors[noticia.categoria] ?? 'gray'}>
+                {noticia.categoria}
+              </Badge>
+              <time class="text-xs text-warmgray" datetime={noticia.fecha}>
+                {formatFecha(noticia.fecha)}
+              </time>
+            </div>
+
+            <!-- Título -->
+            <h3 class="font-serif text-lg font-bold text-charcoal mb-3 leading-snug">
+              {noticia.titulo}
+            </h3>
+
+            <!-- Extracto -->
+            <p class="text-sm text-warmgray leading-relaxed flex-1 mb-5">
+              {noticia.extracto}
+            </p>
+
+            <!-- Leer más -->
+            <a
+              href={`#`}
+              class="inline-flex items-center gap-2 text-sm font-semibold text-nazarene-600 hover:text-nazarene-700 transition-colors duration-200 group"
+            >
+              Leer más
+              <svg class="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+  </div>
+</section>

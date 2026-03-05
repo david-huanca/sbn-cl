@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<BaseLayout
+  title="Política de Privacidad — Seminario Bíblico Nazareno de Chile"
+  description="Política de privacidad del SGA - Sistema de Gestión Académica del Seminario Bíblico Nazareno."
+>
+  <Header />
+
+  <main class="bg-cream min-h-screen">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+      <div class="mb-10">
+        <a href="/" class="text-sm text-nazarene-600 hover:text-nazarene-700 transition-colors duration-200">&larr; Volver al inicio</a>
+      </div>
+
+      <h1 class="font-serif text-4xl font-black text-charcoal mb-3">Política de Privacidad</h1>
+      <p class="text-sm text-warmgray mb-12">Última actualización: 05-03-2026</p>
+
+      <div class="prose prose-stone max-w-none space-y-8 text-warmgray leading-relaxed">
+
+        <section>
+          <p>Esta Política de Privacidad describe cómo el <strong class="text-charcoal">SGA - Sistema de Gestión Académica</strong> del <strong class="text-charcoal">Seminario Bíblico Nazareno</strong> recopila, utiliza y protege los datos personales de alumnos, profesores y personal administrativo.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">1. Responsable del tratamiento</h2>
+          <p>El responsable del tratamiento de los datos personales es el <strong class="text-charcoal">Seminario Bíblico Nazareno</strong>, que utiliza el SGA como herramienta interna para la gestión académica.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">2. Datos personales que recopilamos</h2>
+          <p>El SGA puede recopilar y tratar los siguientes datos según el rol del usuario:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Nombre y apellidos</li>
+            <li>Dirección de correo electrónico</li>
+            <li>Datos de identificación académica (cursos, clases, matrículas)</li>
+            <li>Historial académico y asistencia</li>
+            <li>Información de rol y permisos dentro del sistema</li>
+            <li>Registros técnicos básicos de uso (fecha y hora de acceso, identificadores de sesión)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">3. Finalidades del tratamiento</h2>
+          <p>Los datos se utilizan exclusivamente para gestión académica:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Gestión de matrícula y progreso académico</li>
+            <li>Planificación y administración de cursos y clases</li>
+            <li>Comunicación académica y administrativa</li>
+            <li>Generación de reportes e informes internos</li>
+            <li>Cumplimiento de obligaciones legales o regulatorias</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">4. Base legal para el tratamiento</h2>
+          <p>La base legal incluye: la ejecución de relaciones académicas o contractuales, cumplimiento de obligaciones legales, e interés legítimo en la gestión de actividades académicas.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">5. Destinatarios y transferencias de datos</h2>
+          <p>Los datos se utilizan exclusivamente internamente. No se ceden a terceros excepto:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Cuando existe obligación legal</li>
+            <li>Para servicios de soporte tecnológico bajo acuerdos de confidencialidad</li>
+          </ul>
+          <p class="mt-3">No se realizan ventas de datos personales a terceros con fines comerciales.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">6. Conservación de los datos</h2>
+          <p>Los datos se conservarán durante el tiempo necesario para cumplir finalidades académicas y administrativas, más los plazos de prescripción legal aplicables.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">7. Derechos de los usuarios</h2>
+          <p>Los usuarios pueden ejercer los siguientes derechos:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Acceso a sus datos personales</li>
+            <li>Rectificación de datos inexactos o incompletos</li>
+            <li>Supresión de datos innecesarios</li>
+            <li>Limitación del tratamiento</li>
+            <li>Oposición al tratamiento</li>
+          </ul>
+          <p class="mt-3">Para ejercer estos derechos, contactar a través de secretaría académica o administración.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">8. Seguridad de la información</h2>
+          <p>El SGA aplica medidas técnicas y organizativas razonables para proteger los datos personales frente a accesos no autorizados. No se garantiza seguridad absoluta.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">9. Cambios en esta Política</h2>
+          <p>El Seminario se reserva el derecho de actualizar esta política para reflejar cambios en el SGA, normativa aplicable o procesos internos.</p>
+        </section>
+
+        <section>
+          <h2 class="font-serif text-xl font-bold text-charcoal mb-3">10. Contacto</h2>
+          <p>Para consultas sobre privacidad: <a href="mailto:sga@sbn.cl" class="text-nazarene-600 hover:text-nazarene-700 underline">sga@sbn.cl</a> o canales oficiales de comunicación del Seminario.</p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

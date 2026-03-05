@@ -1,0 +1,73 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import { site } from '../../data/site';
+---
+
+<section id="nosotros" class="py-20 lg:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <!-- Imagen -->
+      <div class="relative order-2 lg:order-1">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-nazarene-100 shadow-2xl">
+          <!-- Placeholder con diseño institucional -->
+          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #2a1e08 0%, #b08920 100%);">
+            <div class="text-center text-white p-8">
+              <img src="/icon.svg" alt="SBN Chile" class="h-24 w-24 mx-auto mb-4 brightness-0 invert opacity-80" />
+              <p class="font-serif text-lg font-semibold opacity-90">Campus SBN Chile</p>
+              <p class="text-amber-200 text-sm mt-2">Santiago, Chile</p>
+            </div>
+          </div>
+        </div>
+        <!-- Decorative element -->
+        <div class="absolute -bottom-4 -right-4 h-32 w-32 rounded-2xl bg-gold-500/20 -z-10"></div>
+        <div class="absolute -top-4 -left-4 h-20 w-20 rounded-xl bg-nazarene-600/10 -z-10"></div>
+      </div>
+
+      <!-- Texto -->
+      <div class="order-1 lg:order-2">
+        <SectionTitle
+          title="Nuestra Historia"
+          subtitle="Más de seis décadas formando ministros del evangelio en Chile y América Latina."
+          centered={false}
+        />
+
+        <div class="space-y-4 text-warmgray leading-relaxed">
+          <p>
+            El Seminario Bíblico Nazareno de Chile fue fundado con el propósito de
+            proveer formación teológica de calidad para los ministros y líderes de la
+            <strong class="text-charcoal">Iglesia del Nazareno</strong> en Chile. Desde
+            sus inicios, ha sido un centro de excelencia académica y espiritualidad
+            wesleyana.
+          </p>
+          <p>
+            A lo largo de los años, hemos formado a cientos de pastores, misioneros y
+            líderes laicos que sirven fielmente en congregaciones a lo largo de todo el
+            territorio nacional e internacionalmente, llevando el mensaje de salvación
+            y santidad plena.
+          </p>
+          <p>
+            Comprometidos con la <strong class="text-charcoal">tradición wesleyana-nazarena</strong>,
+            combinamos el rigor académico con una profunda vida espiritual, preparando
+            a nuestros estudiantes para los desafíos del ministerio contemporáneo.
+          </p>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-3 gap-6 mt-10 pt-8 border-t border-stone-200">
+          {site.stats.map((stat) => (
+            <div class="text-center">
+              <div class="font-serif text-3xl md:text-4xl font-black text-nazarene-600">
+                {stat.value}
+              </div>
+              <div class="text-xs md:text-sm text-warmgray mt-1 leading-tight">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
