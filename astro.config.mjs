@@ -4,7 +4,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://www.sbn.cl',
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel(),
   integrations: [tailwind()],
 });
