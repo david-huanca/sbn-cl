@@ -93,8 +93,7 @@ import { site } from '../../data/site';
       <!-- Formulario -->
       <div>
         <form
-          action="https://formspree.io/f/xpwdkvvk"
-          method="POST"
+          id="contacto-form"
           class="space-y-6 bg-cream rounded-2xl p-8 border border-stone-200"
         >
           <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">
@@ -104,19 +103,36 @@ import { site } from '../../data/site';
             Te responderemos a la brevedad posible.
           </p>
 
-          <div>
-            <label for="nombre" class="block text-sm font-medium text-charcoal mb-2">
-              Nombre completo <span class="text-nazarene-600">*</span>
-            </label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              required
-              autocomplete="name"
-              placeholder="Tu nombre completo"
-              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
-            />
+          <!-- Nombre y Apellido -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="nombre" class="block text-sm font-medium text-charcoal mb-2">
+                Nombre <span class="text-nazarene-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                autocomplete="given-name"
+                placeholder="Tu nombre"
+                class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+              />
+            </div>
+            <div>
+              <label for="apellido" class="block text-sm font-medium text-charcoal mb-2">
+                Apellido <span class="text-nazarene-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="apellido"
+                name="apellido"
+                required
+                autocomplete="family-name"
+                placeholder="Tu apellido"
+                class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+              />
+            </div>
           </div>
 
           <div>
@@ -135,17 +151,62 @@ import { site } from '../../data/site';
           </div>
 
           <div>
-            <label for="telefono" class="block text-sm font-medium text-charcoal mb-2">
+            <label for="phone" class="block text-sm font-medium text-charcoal mb-2">
               Teléfono
             </label>
             <input
               type="tel"
-              id="telefono"
-              name="telefono"
+              id="phone"
+              name="phone"
               autocomplete="tel"
               placeholder="+56 9 1234 5678"
               class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
             />
+          </div>
+
+          <!-- Distrito e Iglesia -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="distrito" class="block text-sm font-medium text-charcoal mb-2">
+                Distrito
+              </label>
+              <input
+                type="text"
+                id="distrito"
+                name="distrito"
+                placeholder="Tu distrito"
+                class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+              />
+            </div>
+            <div>
+              <label for="iglesia" class="block text-sm font-medium text-charcoal mb-2">
+                Iglesia
+              </label>
+              <input
+                type="text"
+                id="iglesia"
+                name="iglesia"
+                placeholder="Tu iglesia"
+                class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="tipo" class="block text-sm font-medium text-charcoal mb-2">
+              Tipo de contacto <span class="text-nazarene-600">*</span>
+            </label>
+            <select
+              id="tipo"
+              name="tipo"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-stone-300 bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-nazarene-500 focus:border-transparent transition-all duration-200 text-sm"
+            >
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="consulta">Consulta general</option>
+              <option value="inscripcion">Inscripción</option>
+              <option value="solicitud">Solicitud</option>
+            </select>
           </div>
 
           <div>
@@ -162,18 +223,22 @@ import { site } from '../../data/site';
             ></textarea>
           </div>
 
+          <!-- Mensaje de estado -->
+          <div id="form-status" class="hidden text-sm text-center py-3 px-4 rounded-lg"></div>
+
           <button
             type="submit"
-            class="w-full py-4 bg-nazarene-600 text-white font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-base"
+            id="submit-btn"
+            class="w-full py-4 bg-nazarene-600 text-white font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-base disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg id="submit-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
-            Enviar mensaje
+            <span id="submit-text">Enviar mensaje</span>
           </button>
 
           <p class="text-xs text-warmgray text-center">
-            Al enviar este formulario, aceptas nuestra política de privacidad.
+            Al enviar este formulario, aceptas nuestra <a href="/politica-de-privacidad" class="underline hover:text-charcoal">política de privacidad</a>.
           </p>
         </form>
       </div>
@@ -181,3 +246,57 @@ import { site } from '../../data/site';
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contacto-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitText = document.getElementById('submit-text') as HTMLSpanElement;
+  const submitIcon = document.getElementById('submit-icon') as HTMLElement;
+  const statusEl = document.getElementById('form-status') as HTMLDivElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Enviando...';
+    submitIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />';
+    statusEl.className = 'hidden';
+
+    const data = {
+      nombre: (form.nombre as HTMLInputElement).value,
+      apellido: (form.apellido as HTMLInputElement).value,
+      email: (form.email as HTMLInputElement).value,
+      phone: (form.phone as HTMLInputElement).value || undefined,
+      distrito: (form.distrito as HTMLInputElement).value || undefined,
+      iglesia: (form.iglesia as HTMLInputElement).value || undefined,
+      tipo: (form.tipo as HTMLSelectElement).value,
+      mensaje: (form.mensaje as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch(import.meta.env.PUBLIC_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': import.meta.env.PUBLIC_API_KEY,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        statusEl.textContent = '¡Mensaje enviado! Te responderemos a la brevedad.';
+        statusEl.className = 'text-sm text-center py-3 px-4 rounded-lg bg-green-50 text-green-700 border border-green-200';
+        form.reset();
+      } else {
+        throw new Error(`Error ${res.status}`);
+      }
+    } catch {
+      statusEl.textContent = 'Ocurrió un error al enviar. Inténtalo nuevamente o escríbenos directamente.';
+      statusEl.className = 'text-sm text-center py-3 px-4 rounded-lg bg-red-50 text-red-700 border border-red-200';
+    } finally {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Enviar mensaje';
+      submitIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />';
+    }
+  });
+</script>
