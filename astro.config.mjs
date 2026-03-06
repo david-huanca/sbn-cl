@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://www.sbn.cl',
-  output: 'static',
+  output: 'hybrid',
+  adapter: vercel(),
   integrations: [tailwind()],
 });
