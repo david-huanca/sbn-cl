@@ -160,9 +160,13 @@ import SectionTitle from '../ui/SectionTitle.astro';
 
     const nextSession = nextSessionDate(item.sessions);
 
+    const imageHtml = item.course.image
+      ? `<img src="${item.course.image}" alt="${item.course.name}" class="w-full object-contain bg-stone-50" loading="lazy" />`
+      : `<div class="h-2 bg-nazarene-600"></div>`;
+
     return `
       <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-        <div class="h-2 bg-nazarene-600"></div>
+        ${imageHtml}
         <div class="p-6 flex flex-col flex-1">
 
           <!-- Badge + tipo -->
@@ -171,10 +175,7 @@ import SectionTitle from '../ui/SectionTitle.astro';
             <span class="text-xs text-warmgray bg-stone-50 px-2 py-1 rounded-md ring-1 ring-stone-200 whitespace-nowrap">${item.type}</span>
           </div>
 
-          <!-- Nombre del curso -->
-          <h3 class="font-serif text-lg font-bold text-charcoal mb-1 leading-snug">
-            ${item.course.name}
-          </h3>
+          ${!item.course.image ? `<h3 class="font-serif text-lg font-bold text-charcoal mb-1 leading-snug">${item.course.name}</h3>` : ''}
 
           <!-- Programa -->
           <p class="text-xs text-nazarene-600 font-medium mb-4">${item.program.name}</p>
