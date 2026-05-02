@@ -9,6 +9,8 @@ import Programas from '../components/sections/Programas.astro';
 import CursosSchedule from '../components/sections/CursosSchedule.astro';
 import Noticias from '../components/sections/Noticias.astro';
 import Contacto from '../components/sections/Contacto.astro';
+
+const showNoticias = import.meta.env.PUBLIC_SGA_NEWS === 'true';
 ---
 
 <BaseLayout
@@ -22,7 +24,7 @@ import Contacto from '../components/sections/Contacto.astro';
     <MisionVision />
     <Programas />
     <CursosSchedule />
-    <Noticias />
+    {showNoticias && <Noticias />}
     <Contacto />
   </main>
   <Footer />

@@ -14,8 +14,8 @@ export const site = {
     youtube: 'https://youtube.com/@sbncl',
   },
   stats: [
-    { value: '60+', label: 'Años de historia' },
-    { value: '1.200+', label: 'Egresados y egresadas' },
-    { value: '12', label: 'Regiones con presencia' },
+    // { value: '50+', label: 'Años de historia' },
+    // { value: '1.200+', label: 'Egresados y egresadas' },
+    // { value: '12', label: 'Regiones con presencia' },
   ],
 };

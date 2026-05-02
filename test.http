@@ -1,0 +1,1 @@
+curl -s -H "X-API-Key: sk_live_mCydDEO-NYOmoWFrOgzGIcpr-VXLJwpIm_gNzBKZTFQ" http://localhost:3001/api/v1/public/courses-schedule 
