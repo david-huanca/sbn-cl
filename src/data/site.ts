@@ -7,7 +7,7 @@ export const site = {
   url: 'https://www.sbn.cl',
   email: 'contacto@sbn.cl',
   phone: '+56 2 2345 6789',
-  address: 'Santiago, Chile',
+  address: 'Cleveland 8040, Vitacura',
   social: {
     facebook: 'https://facebook.com/sbncl',
     instagram: 'https://instagram.com/sbncl',
