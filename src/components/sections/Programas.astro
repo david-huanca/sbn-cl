@@ -1,84 +1,49 @@
 ---
-import SectionTitle from '../ui/SectionTitle.astro';
-import Card from '../ui/Card.astro';
-import Badge from '../ui/Badge.astro';
 import { programas } from '../../data/programas';
-
-const badgeVariants: Record<string, 'red' | 'gold' | 'gray' | 'green'> = {
-  'Grado': 'red',
-  'Pregrado': 'gold',
-  'Técnico': 'green',
-  'Extensión': 'gray',
-};
-
-const icons: Record<string, string> = {
-  'lucide:graduation-cap': `<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>`,
-  'lucide:book-open': `<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
-  'lucide:award': `<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>`,
-  'lucide:users': `<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`,
-};
 ---
 
-<section id="programas" class="py-20 lg:py-28 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="programas" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px; background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div style="max-width:1200px; margin:0 auto;">
 
-    <SectionTitle
-      title="Programas Académicos"
-      subtitle="Ofrecemos una formación teológica completa, adaptada a distintos niveles y vocaciones ministeriales."
-    />
+    <div style="max-width:620px;">
+      <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">03 — Programas Académicos</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">
+        Una formación teológica completa
+      </h2>
+      <p style="font-size:1.15rem; line-height:1.7; color:var(--muted); margin:20px 0 0;">Adaptada a distintos niveles y vocaciones ministeriales.</p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-      {programas.map((programa) => (
-        <Card hover={true} class="flex flex-col">
-          <div class="p-8 flex flex-col h-full">
-            <!-- Icono y nivel -->
-            <div class="flex items-start justify-between mb-5">
-              <div class="h-14 w-14 rounded-xl bg-nazarene-50 flex items-center justify-center text-nazarene-600 flex-shrink-0">
-                <Fragment set:html={icons[programa.icono]} />
-              </div>
-              <Badge variant={badgeVariants[programa.nivel] ?? 'gray'}>
-                {programa.nivel}
-              </Badge>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:clamp(20px,2.5vw,32px); margin-top:56px;">
+      {programas.map((p) => (
+        <article style="background:var(--bg); border:1px solid var(--line); padding:clamp(28px,3vw,44px); display:flex; flex-direction:column; transition:border-color .25s, transform .25s;"
+                 onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-4px)'"
+                 onmouseout="this.style.borderColor='var(--line)';this.style.transform=''">
+          <span style="align-self:flex-start; font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--accent); background:var(--accent-soft); padding:6px 12px;">
+            {p.nivel}
+          </span>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(1.7rem,2.6vw,2.2rem); line-height:1.1; color:var(--ink); margin:24px 0 0;">
+            {p.titulo}
+          </h3>
+          <p style="font-size:1.08rem; line-height:1.7; color:var(--muted); margin:16px 0 0;">{p.descripcion}</p>
+          <div style="display:flex; gap:24px; margin-top:28px; padding-top:24px; border-top:1px solid var(--line);">
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Duración</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--ink); margin-top:4px;">{p.duracion}</div>
             </div>
-
-            <!-- Contenido -->
-            <h3 class="font-serif text-xl font-bold text-charcoal mb-3">
-              {programa.titulo}
-            </h3>
-            <p class="text-warmgray text-sm leading-relaxed flex-1 mb-6">
-              {programa.descripcion}
-            </p>
-
-            <!-- Metadata -->
-            <div class="flex items-center gap-4 pt-4 border-t border-stone-100 text-xs text-warmgray">
-              <span class="flex items-center gap-1.5">
-                <svg class="h-4 w-4 text-nazarene-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {programa.duracion}
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="h-4 w-4 text-nazarene-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                </svg>
-                {programa.modalidad}
-              </span>
+            <div>
+              <div style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Modalidad</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--ink); margin-top:4px;">{p.modalidad}</div>
             </div>
           </div>
-        </Card>
+        </article>
       ))}
     </div>
 
-    <!-- CTA -->
-    <div class="text-center mt-12">
-      <a
-        href="#contacto"
-        class="inline-flex items-center gap-2 px-8 py-4 bg-nazarene-600 text-white font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200 shadow-md hover:shadow-lg text-base"
-      >
-        Solicitar información de admisiones
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
+    <div style="margin-top:44px;">
+      <a href="#contacto"
+         style="text-decoration:none; color:var(--ink); font-size:17px; border-bottom:1px solid var(--accent); padding-bottom:5px; transition:color .2s;"
+         onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink)'">
+        Solicitar información de admisiones →
       </a>
     </div>
 

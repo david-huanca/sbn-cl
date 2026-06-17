@@ -1,67 +1,57 @@
 ---
-import Button from '../ui/Button.astro';
 ---
 
-<section
-  id="inicio"
-  class="relative min-h-screen flex items-center justify-center overflow-hidden"
-  style="background: linear-gradient(135deg, #2a1e08 0%, #4a3510 40%, #2a1e08 100%);"
->
-  <!-- Background texture overlay -->
-  <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+<section id="inicio" style="position:relative; overflow:hidden; background:#15110A; min-height:clamp(560px,86vh,880px); display:flex; align-items:center;">
+  <video autoplay muted loop playsinline preload="auto"
+         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+    <source src="/assets/sbn-hero.mp4" type="video/mp4" />
+  </video>
+  <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(100deg, rgba(15,11,6,.86) 0%, rgba(15,11,6,.58) 46%, rgba(15,11,6,.22) 100%);"></div>
+  <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(to top, rgba(15,11,6,.55) 0%, transparent 32%);"></div>
 
-  <!-- Gold accent top border -->
-  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500"></div>
-
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
-
-    <!-- Logo grande -->
-    <div class="flex justify-center mb-10">
-      <div class="relative">
-        <div class="absolute inset-0 rounded-full bg-white/10 blur-2xl scale-150"></div>
-        <img
-          src="/icon.svg"
-          alt="Logo SBN Chile"
-          class="relative h-28 w-28 md:h-36 md:w-36 brightness-0 invert drop-shadow-2xl"
-        />
+  <div style="position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:clamp(56px,8vw,104px) 28px;">
+    <div style="max-width:780px;">
+      <div style="display:flex; align-items:center; gap:13px; margin-bottom:26px;">
+        <span style="width:36px; height:1px; background:#D9B24A;"></span>
+        <span style="text-transform:uppercase; letter-spacing:.24em; font-size:13px; font-weight:600; color:#EBDDB7;">Iglesia del Nazareno · Chile</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(3rem,6.6vw,5.6rem); line-height:1.01; letter-spacing:-0.015em; margin:0; color:#FBF7F0;">
+        Formando líderes para la <span style="font-style:italic; color:#E8C766;">misión del Reino</span>
+      </h1>
+      <p style="font-size:clamp(1.1rem,1.5vw,1.32rem); line-height:1.7; color:rgba(251,247,240,.88); max-width:33em; margin:30px 0 0;">
+        Formación teológica integral, arraigada en la tradición wesleyana-nazarena, para equipar a ministros y líderes comprometidos con el evangelio.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:40px;">
+        <a href="#programas"
+           style="text-decoration:none; background:#FBF7F0; color:#15110A; padding:16px 32px; font-size:16px; letter-spacing:.01em; transition:filter .2s;"
+           onmouseover="this.style.filter='brightness(.93)'" onmouseout="this.style.filter=''">
+          Ver programas académicos
+        </a>
+        <a href="#contacto"
+           style="text-decoration:none; color:#FBF7F0; padding:16px 6px; font-size:16px; border-bottom:1px solid rgba(251,247,240,.55); transition:border-color .2s;"
+           onmouseover="this.style.borderColor='#E8C766'" onmouseout="this.style.borderColor='rgba(251,247,240,.55)'">
+          Contáctanos →
+        </a>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Eyebrow -->
-    <p class="text-gold-400 text-sm md:text-base font-semibold uppercase tracking-widest mb-4">
-      Iglesia del Nazareno — Chile
+<!-- Stats band -->
+<section style="background:var(--bg); border-bottom:1px solid var(--line); padding:clamp(32px,4.5vw,52px) 28px;">
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:32px;">
+    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.3rem,2vw,1.7rem); line-height:1.3; color:var(--muted); margin:0; max-width:24em;">
+      Rigor académico y fervor espiritual, al servicio de la iglesia local.
     </p>
-
-    <!-- Headline -->
-    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-white mb-6 text-balance">
-      Formando líderes<br />
-      <span class="text-gold-400">para la misión</span><br />
-      del Reino
-    </h1>
-
-    <!-- Subtítulo -->
-    <p class="text-lg md:text-xl text-amber-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-      El Seminario Bíblico Nazareno de Chile ofrece formación teológica integral,
-      arraigada en la tradición wesleyana-nazarena, para equipar ministros y líderes
-      comprometidos con el evangelio.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <Button href="#programas" variant="primary" size="lg">
-        Ver programas académicos
-      </Button>
-      <Button href="#contacto" variant="outline" size="lg">
-        Contáctanos
-      </Button>
+    <div style="display:flex; gap:0 40px;">
+      <div style="padding-right:40px; border-right:1px solid var(--line);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; line-height:1; color:var(--ink);">50<span style="color:var(--accent);">+</span></div>
+        <div style="font-size:12.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-top:8px;">Años formando ministros</div>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; line-height:1; color:var(--ink);">2</div>
+        <div style="font-size:12.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-top:8px;">Programas de grado</div>
+      </div>
     </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-      <svg class="h-6 w-6 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </div>
-
   </div>
 </section>

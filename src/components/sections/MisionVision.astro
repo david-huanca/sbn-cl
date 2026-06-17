@@ -1,68 +1,64 @@
 ---
-import SectionTitle from '../ui/SectionTitle.astro';
 ---
 
-<section id="mision" class="py-20 lg:py-28" style="background: linear-gradient(135deg, #42330b 0%, #8a6c18 50%, #42330b 100%);">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="mision" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px;">
+  <div style="max-width:1200px; margin:0 auto;">
 
-    <SectionTitle
-      title="Misión y Visión"
-      subtitle="El propósito que nos define y la visión que nos inspira hacia el futuro."
-      light={true}
-    />
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
-
-      <!-- Misión -->
-      <div class="bg-white rounded-2xl p-8 md:p-10 shadow-xl">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="h-12 w-12 rounded-xl bg-nazarene-50 flex items-center justify-center flex-shrink-0">
-            <svg class="h-6 w-6 text-nazarene-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <h3 class="font-serif text-2xl font-bold text-charcoal">Nuestra Misión</h3>
-        </div>
-        <p class="text-warmgray leading-relaxed text-base">
-          Formar hombres y mujeres integralmente en la tradición teológica
-          wesleyana-nazarena, equipándolos con conocimiento bíblico, competencias
-          ministeriales y una vida espiritual profunda para servir a Dios en la
-          iglesia y la sociedad, con santidad de corazón y vida.
-        </p>
-      </div>
-
-      <!-- Visión -->
-      <div class="bg-white rounded-2xl p-8 md:p-10 shadow-xl">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="h-12 w-12 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
-            <svg class="h-6 w-6 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </div>
-          <h3 class="font-serif text-2xl font-bold text-charcoal">Nuestra Visión</h3>
-        </div>
-        <p class="text-warmgray leading-relaxed text-base">
-          Ser un centro de excelencia teológica reconocido en Chile y América Latina,
-          que lidera la formación ministerial con rigor académico y fervor espiritual,
-          contribuyendo a la expansión del Reino de Dios y la transformación de
-          comunidades a través de líderes íntegros y comprometidos.
-        </p>
-      </div>
-
+    <div style="max-width:620px;">
+      <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">02 — Misión y Visión</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">
+        El propósito que nos define y la visión que nos inspira
+      </h2>
     </div>
 
-    <!-- Cita bíblica -->
-    <div class="text-center">
-      <blockquote class="max-w-3xl mx-auto">
-        <p class="font-serif text-xl md:text-2xl lg:text-3xl text-white font-light leading-relaxed italic">
-          "Id por todo el mundo y predicad el evangelio a toda criatura."
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap:clamp(24px,3vw,40px); margin-top:56px;">
+      <div style="background:var(--surface); border:1px solid var(--line); padding:clamp(28px,3vw,44px);">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.7rem; color:var(--accent);">Nuestra Misión</div>
+        <p style="font-size:clamp(1.05rem,1.3vw,1.18rem); line-height:1.8; color:var(--muted); margin:18px 0 0;">
+          Formar hombres y mujeres integralmente en la tradición teológica wesleyana-nazarena, equipándolos con conocimiento bíblico, competencias ministeriales y una vida espiritual profunda para servir a Dios en la iglesia y la sociedad, con santidad de corazón y vida.
         </p>
-        <footer class="mt-4">
-          <cite class="text-gold-400 font-semibold not-italic text-base">Marcos 16:15</cite>
-        </footer>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--line); padding:clamp(28px,3vw,44px);">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.7rem; color:var(--accent);">Nuestra Visión</div>
+        <p style="font-size:clamp(1.05rem,1.3vw,1.18rem); line-height:1.8; color:var(--muted); margin:18px 0 0;">
+          Ser un centro de excelencia teológica, que lidera la formación ministerial con rigor académico y fervor espiritual, contribuyendo a la expansión del Reino de Dios y la transformación de comunidades a través de líderes íntegros y comprometidos.
+        </p>
+      </div>
+    </div>
+
+    <figure style="margin:clamp(48px,6vw,80px) auto 0; text-align:center; max-width:880px;">
+      <blockquote style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:clamp(1.9rem,4vw,3rem); line-height:1.25; color:var(--ink); margin:0;">
+        "Id por todo el mundo y predicad el evangelio a toda criatura."
       </blockquote>
-    </div>
+      <figcaption style="margin-top:24px; font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent);">Marcos 16:15</figcaption>
+    </figure>
 
+  </div>
+</section>
+
+<!-- Galería -->
+<section style="background:#15110A; padding:clamp(56px,8vw,108px) 28px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:28px; flex-wrap:wrap;">
+      <div>
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:#D9B24A; font-weight:600;">Galería</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:18px 0 0; color:#FBF7F0;">
+          Momentos de graduación
+        </h2>
+      </div>
+      <p style="font-size:1.1rem; line-height:1.7; color:rgba(251,247,240,.72); margin:0; max-width:26em;">
+        Cada promoción representa años de formación al servicio de la iglesia y la misión del Reino.
+      </p>
+    </div>
+    <div style="margin-top:clamp(36px,4vw,52px); display:flex; flex-direction:column; gap:16px;">
+      <img src="/assets/grad-wide.jpg" alt="Promoción de graduados del Seminario Bíblico Nazareno"
+           style="width:100%; aspect-ratio:24/9; object-fit:cover; display:block;" />
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:16px;">
+        <img src="/assets/grad-2.jpg" alt="Graduados del SBN frente al seminario"
+             style="width:100%; aspect-ratio:3/2; object-fit:cover; display:block;" />
+        <img src="/assets/grad-3.jpg" alt="Familia y docentes en la graduación del SBN"
+             style="width:100%; aspect-ratio:3/2; object-fit:cover; display:block;" />
+      </div>
+    </div>
   </div>
 </section>

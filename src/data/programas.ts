@@ -11,7 +11,7 @@ export const programas: Programa[] = [
     {
     titulo: 'Bachillerato en Teología',
     nivel: 'Pregrado',
-    modalidad: 'Presencial',
+    modalidad: 'Virtual',
     duracion: '4 años',
     descripcion:
       'Fundamentos bíblicos y teológicos para el servicio ministerial en la iglesia local y la comunidad.',
@@ -20,7 +20,7 @@ export const programas: Programa[] = [
   {
     titulo: 'Licenciatura en Teología',
     nivel: 'Grado',
-    modalidad: 'Presencial',
+    modalidad: 'Virtual',
     duracion: '2 años',
     descripcion:
       'Formación teológica integral de nivel universitario, orientada al ministerio pastoral y la investigación académica.',

@@ -1,70 +1,68 @@
 ---
-import SectionTitle from '../ui/SectionTitle.astro';
 ---
 
-<section id="cursos" class="py-20 lg:py-28 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="cursos" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px;">
+  <div style="max-width:1200px; margin:0 auto;">
 
-    <SectionTitle
-      title="Cursos y Horarios"
-      subtitle="Conoce los cursos que están en curso y los próximos a comenzar."
-    />
+    <div style="max-width:620px;">
+      <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">04 — Cursos y Horarios</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">
+        Cursos en curso y próximos a comenzar
+      </h2>
+    </div>
 
     <!-- Tabs -->
-    <div id="cursos-tabs" class="flex gap-2 mb-10 border-b border-stone-200">
-      <button
-        class="tab-btn px-6 py-3 text-sm font-semibold border-b-2 border-nazarene-600 text-nazarene-700 -mb-px transition-colors duration-200"
-        data-tab="en-progreso"
-      >
-        En Progreso
-      </button>
-      <button
-        class="tab-btn px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-warmgray hover:text-charcoal -mb-px transition-colors duration-200"
-        data-tab="inscripciones"
-      >
-        Inscripciones Abiertas
-      </button>
-      <button
-        class="tab-btn px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-warmgray hover:text-charcoal -mb-px transition-colors duration-200"
-        data-tab="proximamente"
-      >
-        Próximamente
-      </button>
+    <div id="cursos-tabs" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:44px; border-bottom:1px solid var(--line); padding-bottom:0;">
+      <button class="tab-btn"
+        style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:16px; padding:14px 4px; margin-bottom:-1px; transition:color .2s; border-bottom:2px solid var(--accent); color:var(--ink);"
+        data-tab="en-progreso">En Progreso</button>
+      <button class="tab-btn"
+        style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:16px; padding:14px 4px; margin-bottom:-1px; transition:color .2s; border-bottom:2px solid transparent; color:var(--muted);"
+        data-tab="inscripciones">Inscripciones Abiertas</button>
+      <button class="tab-btn"
+        style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:16px; padding:14px 4px; margin-bottom:-1px; transition:color .2s; border-bottom:2px solid transparent; color:var(--muted);"
+        data-tab="proximamente">Próximamente</button>
     </div>
 
     <!-- Loading state -->
-    <div id="cursos-loading" class="flex flex-col items-center justify-center py-16 text-warmgray gap-3">
-      <svg class="h-8 w-8 animate-spin text-nazarene-400" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+    <div id="cursos-loading" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:64px 0; color:var(--muted); gap:12px;">
+      <svg style="width:32px; height:32px; animation:spin 1s linear infinite; color:var(--accent);" fill="none" viewBox="0 0 24 24">
+        <circle style="opacity:.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path style="opacity:.75;" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
       </svg>
-      <span class="text-sm">Cargando cursos...</span>
+      <span style="font-size:14px;">Cargando cursos...</span>
     </div>
 
     <!-- Error state -->
-    <div id="cursos-error" class="hidden flex-col items-center justify-center py-16 text-warmgray gap-3">
-      <svg class="h-10 w-10 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div id="cursos-error" style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:64px 0; color:var(--muted); gap:12px;">
+      <svg style="width:40px; height:40px; color:var(--line);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
       </svg>
-      <p class="text-sm">No se pudo cargar la información. Intenta más tarde.</p>
+      <p style="font-size:14px;">No se pudo cargar la información. Intenta más tarde.</p>
     </div>
 
     <!-- Empty state -->
-    <div id="cursos-empty" class="hidden flex-col items-center justify-center py-16 text-warmgray gap-3">
-      <svg class="h-10 w-10 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div id="cursos-empty" style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:64px 0; color:var(--muted); gap:12px;">
+      <svg style="width:40px; height:40px; color:var(--line);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
       </svg>
-      <p class="text-sm">No hay cursos disponibles en esta categoría.</p>
+      <p style="font-size:14px;">No hay cursos disponibles en esta categoría.</p>
     </div>
 
     <!-- Sub-tabs de mes (Próximamente) -->
-    <div id="mes-tabs" class="hidden flex-wrap gap-2 mb-8"></div>
+    <div id="mes-tabs" class="hidden" style="flex-wrap:wrap; gap:8px; margin-bottom:32px;"></div>
 
     <!-- Grid de cursos -->
-    <div id="cursos-grid" class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="cursos-grid" class="hidden" style="grid-template-columns:repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap:clamp(16px,2vw,24px); margin-top:40px;"></div>
 
   </div>
 </section>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #cursos-grid.grid { display: grid; }
+  #mes-tabs.flex { display: flex; }
+</style>
 
 <script>
   interface Session {
@@ -165,74 +163,33 @@ import SectionTitle from '../ui/SectionTitle.astro';
   type TabType = 'en-progreso' | 'inscripciones' | 'proximamente';
 
   function buildCard(item: ScheduleItem, tab: TabType): string {
-    const badgeHtml =
-      tab === 'en-progreso'
-        ? '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">En progreso</span>'
-        : tab === 'inscripciones'
-          ? '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-sky-50 text-sky-700 ring-1 ring-sky-200">Inscripciones abiertas</span>'
-          : '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-amber-50 text-amber-700 ring-1 ring-amber-200">Próximamente</span>';
+    const badge =
+      tab === 'en-progreso' ? 'En curso'
+      : tab === 'inscripciones' ? 'Inscríbete'
+      : 'Próximo';
 
     const nextSession = nextSessionDate(item.sessions);
 
     const imageHtml = item.course.image
-      ? `<img src="${item.course.image}" alt="${item.course.name}" class="w-full object-contain bg-stone-50" loading="lazy" />`
-      : `<div class="h-2 bg-nazarene-600"></div>`;
+      ? `<img src="${item.course.image}" alt="${item.course.name}" style="width:100%; object-fit:contain; background:var(--surface);" loading="lazy" />`
+      : '';
 
     return `
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <article style="background:var(--surface); border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; transition:border-color .25s;">
         ${imageHtml}
-        <div class="p-6 flex flex-col flex-1">
-
-          <div class="flex items-start justify-between gap-3 mb-4">
-            ${badgeHtml}
-            <span class="text-xs text-warmgray bg-stone-50 px-2 py-1 rounded-md ring-1 ring-stone-200 whitespace-nowrap">${item.type}</span>
-          </div>
-
-          ${!item.course.image ? `<h3 class="font-serif text-lg font-bold text-charcoal mb-1 leading-snug">${item.course.name}</h3>` : ''}
-
-          <p class="text-xs text-nazarene-600 font-medium mb-4">${item.program.name}</p>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-xs bg-stone-100 text-warmgray px-2 py-0.5 rounded">${item.course.area}</span>
-            <span class="text-xs bg-stone-100 text-warmgray px-2 py-0.5 rounded">${item.course.block}</span>
-            <span class="text-xs bg-stone-100 text-warmgray px-2 py-0.5 rounded">${item.course.credits} créditos</span>
-          </div>
-
-          <div class="flex-1"></div>
-
-          <div class="pt-4 border-t border-stone-100 space-y-2">
-            <div class="flex items-center gap-2 text-xs text-warmgray">
-              <svg class="h-4 w-4 text-nazarene-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span>${item.teacher.name}</span>
-            </div>
-
-            <div class="flex items-center gap-2 text-xs text-warmgray">
-              <svg class="h-4 w-4 text-nazarene-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span>${formatDate(item.initDate)} — ${formatDate(item.endDate)}</span>
-            </div>
-
-            <div class="flex items-center gap-2 text-xs text-warmgray">
-              <svg class="h-4 w-4 text-nazarene-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>${item.center.name} — Distrito ${item.center.district.name}</span>
-            </div>
-
-            ${nextSession ? `
-            <div class="flex items-center gap-2 text-xs text-warmgray">
-              <svg class="h-4 w-4 text-nazarene-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Próx. sesión: ${nextSession}</span>
-            </div>` : ''}
-          </div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; ${imageHtml ? 'margin-top:16px;' : ''}">
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--accent); background:var(--accent-soft); padding:5px 10px;">${badge}</span>
+          <span style="font-size:12px; letter-spacing:.1em; color:var(--muted);">${item.type}</span>
         </div>
-      </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; line-height:1.15; color:var(--ink); margin:18px 0 0;">${item.course.name}</h3>
+        <p style="font-size:12px; color:var(--accent); margin:6px 0 0;">${item.program.name}</p>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line);">
+          <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Profesor</span><span style="color:var(--ink);">${item.teacher.name}</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Período</span><span style="color:var(--ink);">${formatDate(item.initDate)} — ${formatDate(item.endDate)}</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Centro</span><span style="color:var(--ink); text-align:right; max-width:60%;">${item.center.name}</span></div>
+          ${nextSession ? `<div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Próx. sesión</span><span style="color:var(--ink); text-align:right; max-width:60%;">${nextSession}</span></div>` : ''}
+        </div>
+      </article>
     `;
   }
 
@@ -249,10 +206,8 @@ import SectionTitle from '../ui/SectionTitle.astro';
 
   function renderMesTabs(months: string[]) {
     mesTabs.innerHTML = months.map((m, i) => `
-      <button
-        class="mes-btn px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-200 ${i === 0 ? 'bg-nazarene-600 text-white' : 'bg-stone-100 text-warmgray hover:bg-stone-200'}"
-        data-mes="${m}"
-      >
+      <button class="mes-btn" data-mes="${m}"
+        style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:14px; padding:8px 18px; transition:all .2s; border-bottom:2px solid ${i === 0 ? 'var(--accent)' : 'transparent'}; color:${i === 0 ? 'var(--ink)' : 'var(--muted)'};">
         ${monthLabel(m)}
       </button>
     `).join('');
@@ -262,10 +217,8 @@ import SectionTitle from '../ui/SectionTitle.astro';
         activeMes = btn.dataset.mes!;
         mesTabs.querySelectorAll<HTMLButtonElement>('.mes-btn').forEach((b) => {
           const isActive = b.dataset.mes === activeMes;
-          b.classList.toggle('bg-nazarene-600', isActive);
-          b.classList.toggle('text-white', isActive);
-          b.classList.toggle('bg-stone-100', !isActive);
-          b.classList.toggle('text-warmgray', !isActive);
+          b.style.borderBottomColor = isActive ? 'var(--accent)' : 'transparent';
+          b.style.color = isActive ? 'var(--ink)' : 'var(--muted)';
         });
         renderProximamentePorMes();
       });
@@ -314,10 +267,8 @@ import SectionTitle from '../ui/SectionTitle.astro';
     activeTab = tab;
     tabs.forEach((btn) => {
       const isActive = btn.dataset.tab === tab;
-      btn.classList.toggle('border-nazarene-600', isActive);
-      btn.classList.toggle('text-nazarene-700', isActive);
-      btn.classList.toggle('border-transparent', !isActive);
-      btn.classList.toggle('text-warmgray', !isActive);
+      btn.style.borderBottomColor = isActive ? 'var(--accent)' : 'transparent';
+      btn.style.color = isActive ? 'var(--ink)' : 'var(--muted)';
     });
     renderCourses(tab);
   }

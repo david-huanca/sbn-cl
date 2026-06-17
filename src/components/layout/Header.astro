@@ -3,78 +3,90 @@ const navLinks = [
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Misión y Visión', href: '#mision' },
   { label: 'Programas', href: '#programas' },
-  // { label: 'Noticias', href: '#noticias' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Cursos', href: '#cursos' },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-100">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
+<header style="position:sticky; top:0; z-index:60; background:color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+  <div style="max-width:1200px; margin:0 auto; padding:15px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
 
-      <!-- Logo -->
-      <a href="/" class="flex items-center flex-shrink-0">
-        <img
-          src="/logo.svg"
-          alt="Logo SBN Chile"
-          class="h-8 md:h-10 w-auto"
-        />
-      </a>
+    <a href="#inicio" style="display:flex; align-items:center; gap:14px; text-decoration:none;">
+      <img src="/logo.svg" alt="Seminario Bíblico Nazareno de Chile" style="height:30px; width:auto; display:block;" />
+    </a>
 
-      <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-1">
-        {navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="px-4 py-2 text-sm font-medium text-warmgray hover:text-nazarene-700 hover:bg-nazarene-50 rounded-lg transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <!-- CTA desktop -->
-      <a
-        href="#contacto"
-        class="hidden md:inline-flex items-center px-5 py-2.5 bg-nazarene-600 text-white text-sm font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200 shadow-sm"
-      >
-        Postula ahora
-      </a>
-
-      <!-- Mobile hamburger (CSS-only checkbox hack) -->
-      <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-2 rounded-lg hover:bg-stone-100 transition-colors" aria-label="Abrir menú">
-        <svg class="h-6 w-6 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </label>
-    </div>
-  </nav>
-
-  <!-- Mobile menu checkbox (hidden) -->
-  <input type="checkbox" id="mobile-menu-toggle" class="peer sr-only" />
-
-  <!-- Mobile menu -->
-  <div class="md:hidden max-h-0 overflow-hidden peer-checked:max-h-screen transition-all duration-300 ease-in-out bg-white border-t border-stone-100">
-    <nav class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+    <!-- Desktop nav -->
+    <nav id="desktop-nav" style="display:flex; align-items:center; gap:34px;">
       {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="block px-4 py-3 text-base font-medium text-warmgray hover:text-nazarene-700 hover:bg-nazarene-50 rounded-lg transition-colors duration-200"
-          onclick="document.getElementById('mobile-menu-toggle').checked = false;"
-        >
+        <a href={link.href} style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;"
+           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink)'">
           {link.label}
         </a>
       ))}
-      <div class="pt-2 pb-1">
-        <a
-          href="#contacto"
-          class="block w-full text-center px-4 py-3 bg-nazarene-600 text-white font-semibold rounded-lg hover:bg-nazarene-700 transition-colors duration-200"
-        >
-          Postula ahora
-        </a>
-      </div>
+      <a href="#contacto"
+         style="display:inline-block; text-decoration:none; background:var(--ink); color:var(--bg); padding:11px 22px; font-size:15px; letter-spacing:.01em; transition:filter .2s;"
+         onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter=''">
+        Postula ahora
+      </a>
     </nav>
+
+    <!-- Mobile hamburger -->
+    <button id="mobile-toggle" aria-label="Abrir menú"
+            style="display:none; background:none; border:none; cursor:pointer; padding:8px; flex-direction:column; gap:5px;">
+      <span style="display:block; width:26px; height:1.5px; background:var(--ink);"></span>
+      <span style="display:block; width:26px; height:1.5px; background:var(--ink);"></span>
+      <span style="display:block; width:18px; height:1.5px; background:var(--ink);"></span>
+    </button>
   </div>
 </header>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu" style="display:none; position:fixed; inset:0; z-index:80; background:var(--bg); flex-direction:column; padding:24px 28px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:48px;">
+    <span style="font-family:'Cormorant Garamond', serif; font-size:20px; color:var(--ink);">Menú</span>
+    <button id="mobile-close" aria-label="Cerrar"
+            style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:30px; line-height:1; color:var(--ink);">×</button>
+  </div>
+  <nav style="display:flex; flex-direction:column; gap:8px;">
+    {navLinks.map((link) => (
+      <a href={link.href} class="mobile-link"
+         style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">
+        {link.label}
+      </a>
+    ))}
+  </nav>
+  <a href="#contacto" id="mobile-cta"
+     style="margin-top:auto; text-align:center; text-decoration:none; background:var(--ink); color:var(--bg); padding:16px; font-size:17px;">
+    Postula ahora
+  </a>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const closeBtn = document.getElementById('mobile-close')!;
+  const desktopNav = document.getElementById('desktop-nav')!;
+  const cta = document.getElementById('mobile-cta')!;
+
+  function isMobile() { return window.innerWidth < 880; }
+
+  function syncLayout() {
+    if (isMobile()) {
+      desktopNav.style.display = 'none';
+      toggle.style.display = 'flex';
+    } else {
+      desktopNav.style.display = 'flex';
+      toggle.style.display = 'none';
+      menu.style.display = 'none';
+    }
+  }
+
+  function openMenu() { menu.style.display = 'flex'; }
+  function closeMenu() { menu.style.display = 'none'; }
+
+  toggle.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  cta.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-link').forEach((l) => l.addEventListener('click', closeMenu));
+  window.addEventListener('resize', syncLayout);
+  syncLayout();
+</script>

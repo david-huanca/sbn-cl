@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  ::selection { background: var(--ink); color: var(--bg); }
+  :root, [data-theme="sereno"] {
+    --bg: #FFFFFF; --surface: #EFF0F1; --ink: #20211F; --muted: #5E605C;
+    --line: #E6E7E7; --accent: #8C6B14; --accent-on: #FFFFFF; --accent-soft: #EFE8D0;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: .55; }
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" data-theme="{{ theme }}" style="background:var(--bg); color:var(--ink); font-family:'Newsreader', Georgia, serif; min-height:100vh; transition: background .4s ease, color .4s ease; overflow-x:hidden;">
+
+  <!-- ===================== HEADER ===================== -->
+  <header style="position:sticky; top:0; z-index:60; background:color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
+    <div style="max-width:1200px; margin:0 auto; padding:15px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+      <a href="#inicio" style="display:flex; align-items:center; gap:14px; text-decoration:none;">
+        <img src="assets/logo.svg?v=2" alt="Seminario Bíblico Nazareno de Chile" style="height:30px; width:auto; display:block;" />
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex; align-items:center; gap:34px;">
+          <a href="#nosotros" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Nosotros</a>
+          <a href="#mision" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Misión y Visión</a>
+          <a href="#programas" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Programas</a>
+          <a href="#cursos" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Cursos</a>
+          <a href="#contacto" style="display:inline-block; text-decoration:none; background:var(--ink); color:var(--bg); padding:11px 22px; font-size:15px; letter-spacing:.01em; transition:filter .2s;" style-hover="filter:brightness(1.08);">Postula ahora</a>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMobile }}" aria-label="Abrir menú" style="background:none; border:none; cursor:pointer; padding:8px; display:flex; flex-direction:column; gap:5px;">
+          <span style="display:block; width:26px; height:1.5px; background:var(--ink);"></span>
+          <span style="display:block; width:26px; height:1.5px; background:var(--ink);"></span>
+          <span style="display:block; width:18px; height:1.5px; background:var(--ink);"></span>
+        </button>
+      </sc-if>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE MENU ===================== -->
+  <sc-if value="{{ mobileOpen }}">
+    <div style="position:fixed; inset:0; z-index:80; background:var(--bg); display:flex; flex-direction:column; padding:24px 28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:48px;">
+        <span style="font-family:'Cormorant Garamond', serif; font-size:20px; color:var(--ink);">Menú</span>
+        <button onClick="{{ closeMobile }}" aria-label="Cerrar" style="background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:30px; line-height:1; color:var(--ink);">×</button>
+      </div>
+      <nav style="display:flex; flex-direction:column; gap:8px;">
+        <a href="#nosotros" onClick="{{ closeMobile }}" style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">Nosotros</a>
+        <a href="#mision" onClick="{{ closeMobile }}" style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">Misión y Visión</a>
+        <a href="#programas" onClick="{{ closeMobile }}" style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">Programas</a>
+        <a href="#cursos" onClick="{{ closeMobile }}" style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">Cursos</a>
+        <a href="#contacto" onClick="{{ closeMobile }}" style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:34px; padding:10px 0; border-bottom:1px solid var(--line);">Contacto</a>
+      </nav>
+      <a href="#contacto" onClick="{{ closeMobile }}" style="margin-top:auto; text-align:center; text-decoration:none; background:var(--ink); color:var(--bg); padding:16px; font-size:17px;">Postula ahora</a>
+    </div>
+  </sc-if>
+
+  <!-- ===================== HERO (VIDEO) ===================== -->
+  <section id="inicio" style="position:relative; overflow:hidden; background:#15110A; min-height:clamp(560px,86vh,880px); display:flex; align-items:center;">
+    <video autoplay muted loop playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+      <source src="assets/sbn-hero.mp4" type="video/mp4" />
+    </video>
+    <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(100deg, rgba(15,11,6,.86) 0%, rgba(15,11,6,.58) 46%, rgba(15,11,6,.22) 100%);"></div>
+    <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(to top, rgba(15,11,6,.55) 0%, transparent 32%);"></div>
+
+    <div style="position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:clamp(56px,8vw,104px) 28px;">
+      <div style="max-width:780px;">
+        <div style="display:flex; align-items:center; gap:13px; margin-bottom:26px;">
+          <span style="width:36px; height:1px; background:#D9B24A;"></span>
+          <span style="text-transform:uppercase; letter-spacing:.24em; font-size:13px; font-weight:600; color:#EBDDB7;">Iglesia del Nazareno · Chile</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(3rem,6.6vw,5.6rem); line-height:1.01; letter-spacing:-0.015em; margin:0; color:#FBF7F0;">Formando líderes para la <span style="font-style:italic; color:#E8C766;">misión del Reino</span></h1>
+        <p style="font-size:clamp(1.1rem,1.5vw,1.32rem); line-height:1.7; color:rgba(251,247,240,.88); max-width:33em; margin:30px 0 0;">Formación teológica integral, arraigada en la tradición wesleyana-nazarena, para equipar a ministros y líderes comprometidos con el evangelio.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:40px;">
+          <a href="#programas" style="text-decoration:none; background:#FBF7F0; color:#15110A; padding:16px 32px; font-size:16px; letter-spacing:.01em; transition:filter .2s;" style-hover="filter:brightness(.93);">Ver programas académicos</a>
+          <a href="#contacto" style="text-decoration:none; color:#FBF7F0; padding:16px 6px; font-size:16px; border-bottom:1px solid rgba(251,247,240,.55); transition:border-color .2s;" style-hover="border-color:#E8C766;">Contáctanos →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section style="background:var(--bg); border-bottom:1px solid var(--line); padding:clamp(32px,4.5vw,52px) 28px;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:32px;">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.3rem,2vw,1.7rem); line-height:1.3; color:var(--muted); margin:0; max-width:24em;">Rigor académico y fervor espiritual, al servicio de la iglesia local.</p>
+      <div style="display:flex; gap:0 40px;">
+        <div style="padding-right:40px; border-right:1px solid var(--line);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; line-height:1; color:var(--ink);">50<span style="color:var(--accent);">+</span></div>
+          <div style="font-size:12.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-top:8px;">Años formando ministros</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; line-height:1; color:var(--ink);">2</div>
+          <div style="font-size:12.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-top:8px;">Programas de grado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NOSOTROS / HISTORIA ===================== -->
+  <section id="nosotros" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px; background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:clamp(40px,5vw,80px);">
+      <div>
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">01 — Nuestra Historia</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">Más de cinco décadas formando ministros del evangelio en Chile</h2>
+        <figure style="margin:36px 0 0;">
+          <img src="assets/grad-1.jpg" alt="Graduación en el Seminario Bíblico Nazareno de Chile" style="width:100%; aspect-ratio:16/11; object-fit:cover; display:block;" />
+          <figcaption style="margin-top:12px; font-size:12.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Ceremonia de graduación · Licenciatura en Teología</figcaption>
+        </figure>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:24px; padding-top:8px;">
+        <p style="font-size:clamp(1.05rem,1.4vw,1.2rem); line-height:1.8; color:var(--muted); margin:0;">El Seminario Bíblico Nazareno de Chile fue fundado con el propósito de proveer formación teológica de calidad para los ministros y líderes de la <span style="color:var(--ink);">Iglesia del Nazareno</span> en Chile. Desde sus inicios ha sido un centro de excelencia académica y espiritualidad wesleyana.</p>
+        <p style="font-size:clamp(1.05rem,1.4vw,1.2rem); line-height:1.8; color:var(--muted); margin:0;">A lo largo de los años hemos formado pastores, misioneros y líderes laicos que sirven fielmente en congregaciones a lo largo de todo el territorio nacional e internacionalmente, llevando el mensaje de salvación y santidad plena.</p>
+        <p style="font-size:clamp(1.05rem,1.4vw,1.2rem); line-height:1.8; color:var(--muted); margin:0;">Comprometidos con la <span style="color:var(--ink);">tradición wesleyana-arminiana</span>, combinamos el rigor académico con una profunda vida espiritual, preparando a nuestros estudiantes para los desafíos del ministerio contemporáneo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MISIÓN Y VISIÓN ===================== -->
+  <section id="mision" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="max-width:620px;">
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">02 — Misión y Visión</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">El propósito que nos define y la visión que nos inspira</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap:clamp(24px,3vw,40px); margin-top:56px;">
+        <div style="background:var(--surface); border:1px solid var(--line); padding:clamp(28px,3vw,44px);">
+          <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.7rem; color:var(--accent);">Nuestra Misión</div>
+          <p style="font-size:clamp(1.05rem,1.3vw,1.18rem); line-height:1.8; color:var(--muted); margin:18px 0 0;">Formar hombres y mujeres integralmente en la tradición teológica wesleyana-nazarena, equipándolos con conocimiento bíblico, competencias ministeriales y una vida espiritual profunda para servir a Dios en la iglesia y la sociedad, con santidad de corazón y vida.</p>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--line); padding:clamp(28px,3vw,44px);">
+          <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.7rem; color:var(--accent);">Nuestra Visión</div>
+          <p style="font-size:clamp(1.05rem,1.3vw,1.18rem); line-height:1.8; color:var(--muted); margin:18px 0 0;">Ser un centro de excelencia teológica reconocido en Chile y América Latina, que lidera la formación ministerial con rigor académico y fervor espiritual, contribuyendo a la expansión del Reino de Dios y la transformación de comunidades a través de líderes íntegros y comprometidos.</p>
+        </div>
+      </div>
+
+      <figure style="margin:clamp(48px,6vw,80px) 0 0; text-align:center; max-width:880px; margin-left:auto; margin-right:auto;">
+        <blockquote style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:clamp(1.9rem,4vw,3rem); line-height:1.25; color:var(--ink); margin:0;">“Id por todo el mundo y predicad el evangelio a toda criatura.”</blockquote>
+        <figcaption style="margin-top:24px; font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent);">Marcos 16:15</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== GALERÍA ===================== -->
+  <section style="background:#15110A; padding:clamp(56px,8vw,108px) 28px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:28px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:#D9B24A; font-weight:600;">Galería</div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:18px 0 0; color:#FBF7F0;">Momentos de graduación</h2>
+        </div>
+        <p style="font-size:1.1rem; line-height:1.7; color:rgba(251,247,240,.72); margin:0; max-width:26em;">Cada promoción representa años de formación al servicio de la iglesia y la misión del Reino.</p>
+      </div>
+      <div style="margin-top:clamp(36px,4vw,52px); display:flex; flex-direction:column; gap:16px;">
+        <img src="assets/grad-wide.jpg" alt="Promoción de graduados del Seminario Bíblico Nazareno" style="width:100%; aspect-ratio:24/9; object-fit:cover; display:block;" />
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:16px;">
+          <img src="assets/grad-2.jpg" alt="Graduados del SBN frente al seminario" style="width:100%; aspect-ratio:3/2; object-fit:cover; display:block;" />
+          <img src="assets/grad-3.jpg" alt="Familia y docentes en la graduación del SBN" style="width:100%; aspect-ratio:3/2; object-fit:cover; display:block;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROGRAMAS ===================== -->
+  <section id="programas" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px; background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="max-width:620px;">
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">03 — Programas Académicos</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">Una formación teológica completa</h2>
+        <p style="font-size:1.15rem; line-height:1.7; color:var(--muted); margin:20px 0 0;">Adaptada a distintos niveles y vocaciones ministeriales.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:clamp(20px,2.5vw,32px); margin-top:56px;">
+        <sc-for list="{{ programs }}" as="p" hint-placeholder-count="2">
+          <article style="background:var(--bg); border:1px solid var(--line); padding:clamp(28px,3vw,44px); display:flex; flex-direction:column; transition:border-color .25s, transform .25s;" style-hover="border-color:var(--accent); transform:translateY(-4px);">
+            <span style="align-self:flex-start; font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--accent); background:var(--accent-soft); padding:6px 12px;">{{ p.tag }}</span>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(1.7rem,2.6vw,2.2rem); line-height:1.1; color:var(--ink); margin:24px 0 0;">{{ p.title }}</h3>
+            <p style="font-size:1.08rem; line-height:1.7; color:var(--muted); margin:16px 0 0;">{{ p.desc }}</p>
+            <div style="display:flex; gap:24px; margin-top:28px; padding-top:24px; border-top:1px solid var(--line);">
+              <div>
+                <div style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Duración</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--ink); margin-top:4px;">{{ p.duration }}</div>
+              </div>
+              <div>
+                <div style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Modalidad</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--ink); margin-top:4px;">{{ p.mode }}</div>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:44px;">
+        <a href="#contacto" style="text-decoration:none; color:var(--ink); font-size:17px; border-bottom:1px solid var(--accent); padding-bottom:5px; transition:color .2s;" style-hover="color:var(--accent);">Solicitar información de admisiones →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURSOS Y HORARIOS ===================== -->
+  <section id="cursos" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="max-width:620px;">
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">04 — Cursos y Horarios</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">Cursos en curso y próximos a comenzar</h2>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:44px; border-bottom:1px solid var(--line); padding-bottom:0;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+          <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:clamp(16px,2vw,24px); margin-top:40px;">
+        <sc-for list="{{ visibleCourses }}" as="c" hint-placeholder-count="3">
+          <article style="background:var(--surface); border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; transition:border-color .25s;" style-hover="border-color:var(--accent);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+              <span style="font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--accent); background:var(--accent-soft); padding:5px 10px;">{{ c.badge }}</span>
+              <span style="font-size:12px; letter-spacing:.1em; color:var(--muted);">{{ c.code }}</span>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; line-height:1.15; color:var(--ink); margin:18px 0 0;">{{ c.title }}</h3>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line);">
+              <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Profesor</span><span style="color:var(--ink);">{{ c.instructor }}</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Horario</span><span style="color:var(--ink);">{{ c.schedule }}</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px;"><span style="color:var(--muted);">Modalidad</span><span style="color:var(--ink);">{{ c.modality }}</span></div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section id="contacto" style="scroll-margin-top:90px; padding:clamp(72px,10vw,140px) 28px; background:var(--surface); border-top:1px solid var(--line);">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap:clamp(40px,5vw,72px);">
+      <div>
+        <div style="font-size:13px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); font-weight:600;">05 — Contáctanos</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.3rem,4.5vw,3.6rem); line-height:1.05; letter-spacing:-0.01em; margin:22px 0 0; color:var(--ink);">Estamos aquí para responder tus preguntas</h2>
+        <p style="font-size:1.15rem; line-height:1.7; color:var(--muted); margin:22px 0 0; max-width:30em;">Sobre nuestros programas académicos y el proceso de admisión.</p>
+
+        <div style="display:flex; flex-direction:column; gap:0; margin-top:44px;">
+          <div style="display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-top:1px solid var(--line);">
+            <span style="font-size:13px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Dirección</span>
+            <span style="font-size:16px; color:var(--ink); text-align:right;">Cleveland 8040, Vitacura</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-top:1px solid var(--line);">
+            <span style="font-size:13px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Correo</span>
+            <a href="mailto:{{ email }}" style="font-size:16px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--accent);">{{ email }}</a>
+          </div>
+          <div style="display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+            <span style="font-size:13px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Teléfono</span>
+            <a href="tel:{{ phoneHref }}" style="font-size:16px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--accent);">{{ phone }}</a>
+          </div>
+          <div style="display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:13px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);">Horario</span>
+            <span style="font-size:16px; color:var(--ink); text-align:right;">Lun a Vie · 9:00 – 18:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <sc-if value="{{ sent }}">
+          <div style="border:1px solid var(--accent); background:var(--accent-soft); padding:clamp(32px,4vw,52px); height:100%; display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.2rem; color:var(--ink);">¡Gracias!</div>
+            <p style="font-size:1.12rem; line-height:1.7; color:var(--muted); margin:16px 0 0;">Hemos recibido tu mensaje. Te responderemos a la brevedad posible.</p>
+            <button onClick="{{ resetForm }}" style="align-self:flex-start; margin-top:28px; background:none; border:none; cursor:pointer; color:var(--ink); font-family:'Newsreader',serif; font-size:16px; border-bottom:1px solid var(--accent); padding:0 0 4px;">Enviar otro mensaje →</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ handleSubmit }}" style="background:var(--bg); border:1px solid var(--line); padding:clamp(28px,3.5vw,44px);">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--ink); margin-bottom:6px;">Envíanos un mensaje</div>
+            <div style="font-size:14px; color:var(--muted); margin-bottom:28px;">Te responderemos a la brevedad posible.</div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:20px;">
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Nombre *</label>
+                <input name="nombre" value="{{ form.nombre }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+                <sc-if value="{{ errors.nombre }}"><span style="font-size:12.5px; color:#B23A3A;">{{ errors.nombre }}</span></sc-if>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Apellido *</label>
+                <input name="apellido" value="{{ form.apellido }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+                <sc-if value="{{ errors.apellido }}"><span style="font-size:12.5px; color:#B23A3A;">{{ errors.apellido }}</span></sc-if>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Correo electrónico *</label>
+                <input name="email" value="{{ form.email }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+                <sc-if value="{{ errors.email }}"><span style="font-size:12.5px; color:#B23A3A;">{{ errors.email }}</span></sc-if>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Teléfono</label>
+                <input name="telefono" value="{{ form.telefono }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Distrito</label>
+                <input name="distrito" value="{{ form.distrito }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Iglesia</label>
+                <input name="iglesia" value="{{ form.iglesia }}" onInput="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);" />
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:7px; margin-top:20px;">
+              <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Tipo de contacto *</label>
+              <select name="tipo" value="{{ form.tipo }}" onChange="{{ handleInput }}" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none;" style-focus="border-color:var(--accent);">
+                <option value="">Selecciona una opción</option>
+                <sc-for list="{{ contactTypes }}" as="opt" hint-placeholder-count="3"><option value="{{ opt }}">{{ opt }}</option></sc-for>
+              </select>
+              <sc-if value="{{ errors.tipo }}"><span style="font-size:12.5px; color:#B23A3A;">{{ errors.tipo }}</span></sc-if>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:7px; margin-top:20px;">
+              <label style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Mensaje *</label>
+              <textarea name="mensaje" value="{{ form.mensaje }}" onInput="{{ handleInput }}" rows="4" style="width:100%; padding:12px 14px; border:1px solid var(--line); background:var(--surface); font-family:'Newsreader',serif; font-size:16px; color:var(--ink); outline:none; resize:vertical;" style-focus="border-color:var(--accent);"></textarea>
+              <sc-if value="{{ errors.mensaje }}"><span style="font-size:12.5px; color:#B23A3A;">{{ errors.mensaje }}</span></sc-if>
+            </div>
+
+            <button type="submit" style="width:100%; margin-top:28px; background:var(--ink); color:var(--bg); border:none; cursor:pointer; padding:16px; font-family:'Newsreader',serif; font-size:16px; letter-spacing:.02em; transition:filter .2s;" style-hover="filter:brightness(1.08);">Enviar mensaje</button>
+            <p style="font-size:12.5px; color:var(--muted); margin:16px 0 0; text-align:center;">Al enviar este formulario, aceptas nuestra política de privacidad.</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:var(--bg); border-top:1px solid var(--line); padding:clamp(56px,7vw,88px) 28px 40px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:clamp(32px,4vw,56px);">
+        <div style="grid-column:span 1;">
+          <img src="assets/logo.svg?v=2" alt="Seminario Bíblico Nazareno de Chile" style="height:34px; width:auto; display:block;" />
+          <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.25rem; color:var(--muted); margin:24px 0 0; max-width:22em;">Formando líderes para la misión del Reino.</p>
+        </div>
+        <div>
+          <div style="font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--accent); margin-bottom:18px;">Navegación</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="#nosotros" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Nosotros</a>
+            <a href="#mision" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Misión y Visión</a>
+            <a href="#programas" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Programas</a>
+            <a href="#contacto" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Contacto</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--accent); margin-bottom:18px;">Programas</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="#programas" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Licenciatura en Teología</a>
+            <a href="#programas" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Bachillerato en Teología</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--accent); margin-bottom:18px;">Síguenos</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="https://facebook.com/sbncl" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Facebook</a>
+            <a href="https://instagram.com/sbncl" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">Instagram</a>
+            <a href="https://youtube.com/@sbncl" style="text-decoration:none; color:var(--ink); font-size:16px; transition:color .2s;" style-hover="color:var(--accent);">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; margin-top:clamp(40px,5vw,64px); padding-top:28px; border-top:1px solid var(--line);">
+        <span style="font-size:13.5px; color:var(--muted);">© 2026 Seminario Bíblico Nazareno de Chile. Todos los derechos reservados.</span>
+        <div style="display:flex; gap:24px;">
+          <a href="#" style="font-size:13.5px; color:var(--muted); text-decoration:none;" style-hover="color:var(--accent);">Política de Privacidad</a>
+          <a href="#" style="font-size:13.5px; color:var(--muted); text-decoration:none;" style-hover="color:var(--accent);">Condiciones del Servicio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 1600}, &quot;email&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;contacto@sbn.cl&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;phone&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;+56 2 2345 6789&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+
+  state = {
+    theme: 'sereno',
+    isMobile: false,
+    mobileOpen: false,
+    activeTab: 'progreso',
+    form: { nombre: '', apellido: '', email: '', telefono: '', distrito: '', iglesia: '', tipo: '', mensaje: '' },
+    errors: {},
+    sent: false,
+  };
+
+  COURSES = {
+    progreso: [
+      { code: 'TS-201', title: 'Teología Sistemática I', instructor: 'Dr. R. Castro', schedule: 'Mar y Jue · 19:00', modality: 'Presencial', badge: 'En curso' },
+      { code: 'BB-110', title: 'Hermenéutica Bíblica', instructor: 'Mg. M. Fuentes', schedule: 'Lun · 18:30', modality: 'Híbrido', badge: 'En curso' },
+      { code: 'HI-150', title: 'Historia del Movimiento de Santidad', instructor: 'Dr. D. Aravena', schedule: 'Sáb · 10:00', modality: 'Presencial', badge: 'En curso' },
+    ],
+    abiertas: [
+      { code: 'GR-101', title: 'Griego del Nuevo Testamento I', instructor: 'Dr. P. Soto', schedule: 'Mié · 19:00', modality: 'Presencial', badge: 'Inscríbete' },
+      { code: 'MN-220', title: 'Homilética', instructor: 'Mg. C. Reyes', schedule: 'Lun y Mié · 18:00', modality: 'Híbrido', badge: 'Inscríbete' },
+      { code: 'MN-240', title: 'Cuidado Pastoral y Consejería', instructor: 'Mg. L. Morales', schedule: 'Vie · 18:30', modality: 'Online', badge: 'Inscríbete' },
+    ],
+    proximamente: [
+      { code: 'AT-130', title: 'Antiguo Testamento: Pentateuco', instructor: 'Dr. J. Vidal', schedule: 'Inicio · Agosto', modality: 'Presencial', badge: 'Próximo' },
+      { code: 'ET-210', title: 'Ética Cristiana Wesleyana', instructor: 'Mg. A. Núñez', schedule: 'Inicio · Septiembre', modality: 'Híbrido', badge: 'Próximo' },
+    ],
+  };
+
+  TABS = [
+    { id: 'progreso', label: 'En Progreso' },
+    { id: 'abiertas', label: 'Inscripciones Abiertas' },
+    { id: 'proximamente', label: 'Próximamente' },
+  ];
+
+  componentDidMount() {
+    this._mql = window.matchMedia('(max-width: 879px)');
+    this._sync = () => this.setState({ isMobile: this._mql.matches });
+    this._sync();
+    if (this._mql.addEventListener) this._mql.addEventListener('change', this._sync);
+    else this._mql.addListener(this._sync);
+    window.addEventListener('resize', this._sync);
+    // Re-measure after layout/fonts settle (iframe width may not be final at mount)
+    requestAnimationFrame(this._sync);
+    this._t = setTimeout(this._sync, 200);
+    window.addEventListener('load', this._sync);
+  }
+  componentWillUnmount() {
+    if (this._mql) {
+      if (this._mql.removeEventListener) this._mql.removeEventListener('change', this._sync);
+      else this._mql.removeListener(this._sync);
+    }
+    window.removeEventListener('resize', this._sync);
+    window.removeEventListener('load', this._sync);
+    clearTimeout(this._t);
+  }
+
+  handleInput = (e) => {
+    const { name, value } = e.target;
+    this.setState((s) => ({ form: { ...s.form, [name]: value }, errors: { ...s.errors, [name]: undefined } }));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const f = this.state.form;
+    const errors = {};
+    if (!f.nombre.trim()) errors.nombre = 'Ingresa tu nombre.';
+    if (!f.apellido.trim()) errors.apellido = 'Ingresa tu apellido.';
+    if (!f.email.trim()) errors.email = 'Ingresa tu correo.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errors.email = 'Correo no válido.';
+    if (!f.tipo) errors.tipo = 'Selecciona una opción.';
+    if (!f.mensaje.trim()) errors.mensaje = 'Escribe un mensaje.';
+    if (Object.keys(errors).length) { this.setState({ errors }); return; }
+    this.setState({ sent: true, errors: {} });
+  };
+
+  resetForm = () => {
+    this.setState({ sent: false, form: { nombre: '', apellido: '', email: '', telefono: '', distrito: '', iglesia: '', tipo: '', mensaje: '' }, errors: {} });
+  };
+
+  renderVals() {
+    const { theme, isMobile, mobileOpen, activeTab, form, errors, sent } = this.state;
+
+    const tabBase = "background:none; border:none; cursor:pointer; font-family:'Newsreader',serif; font-size:16px; padding:14px 4px; margin-bottom:-1px; transition:color .2s; border-bottom:2px solid transparent;";
+    const tabs = this.TABS.map((t) => {
+      const active = t.id === activeTab;
+      return {
+        ...t,
+        onClick: () => this.setState({ activeTab: t.id }),
+        style: tabBase + (active
+          ? ' color:var(--ink); border-bottom-color:var(--accent);'
+          : ' color:var(--muted); border-bottom-color:transparent;'),
+      };
+    });
+
+    const programs = [
+      { tag: 'Pregrado', title: 'Bachillerato en Teología', desc: 'Fundamentos bíblicos y teológicos para el servicio ministerial en la iglesia local y la comunidad.', duration: '4 años', mode: 'Presencial' },
+      { tag: 'Grado', title: 'Licenciatura en Teología', desc: 'Formación teológica integral de nivel universitario, orientada al ministerio pastoral y la investigación académica.', duration: '2 años', mode: 'Presencial' },
+    ];
+
+    const email = this.props.email || 'contacto@sbn.cl';
+    const phone = this.props.phone || '+56 2 2345 6789';
+
+    return {
+      rootRef: this.rootRef,
+      theme,
+      isMobile,
+      isDesktop: !isMobile,
+      mobileOpen,
+      toggleMobile: () => this.setState((s) => ({ mobileOpen: !s.mobileOpen })),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+      tabs,
+      visibleCourses: this.COURSES[activeTab] || [],
+      programs,
+      contactTypes: ['Consulta general', 'Inscripción', 'Solicitud'],
+      email,
+      phone,
+      phoneHref: phone.replace(/\s+/g, ''),
+      form,
+      errors,
+      sent,
+      notSent: !sent,
+      handleInput: this.handleInput,
+      handleSubmit: this.handleSubmit,
+      resetForm: this.resetForm,
+    };
+  }
+}
+</script>
+</body>
+</html>
