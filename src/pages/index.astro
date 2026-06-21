@@ -9,6 +9,7 @@ import Programas from '../components/sections/Programas.astro';
 import CursosSchedule from '../components/sections/CursosSchedule.astro';
 import Noticias from '../components/sections/Noticias.astro';
 import Contacto from '../components/sections/Contacto.astro';
+import PortalAlumnos from '../components/sections/PortalAlumnos.astro';
 
 const showNoticias = import.meta.env.PUBLIC_SGA_NEWS === 'true';
 ---
@@ -25,6 +26,7 @@ const showNoticias = import.meta.env.PUBLIC_SGA_NEWS === 'true';
     <Programas />
     <CursosSchedule />
     {showNoticias && <Noticias />}
+    <PortalAlumnos />
     <Contacto />
   </main>
   <Footer />
