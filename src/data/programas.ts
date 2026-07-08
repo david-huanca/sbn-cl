@@ -11,7 +11,7 @@ export const programas: Programa[] = [
     {
     titulo: 'Bachillerato en Teología',
     nivel: 'Pregrado',
-    modalidad: 'Virtual',
+    modalidad: 'Videoconferecia',
     duracion: '4 años',
     descripcion:
       'Fundamentos bíblicos y teológicos para el servicio ministerial en la iglesia local y la comunidad.',
@@ -19,11 +19,11 @@ export const programas: Programa[] = [
   },
   {
     titulo: 'Licenciatura en Teología',
-    nivel: 'Grado',
+    nivel: 'Pregrado',
     modalidad: 'Virtual',
     duracion: '2 años',
     descripcion:
-      'Formación teológica integral de nivel universitario, orientada al ministerio pastoral y la investigación académica.',
+      'Formación teológica integral de nivel universitario, orientada al ministerio pastoral y la investigación académica. En convenio con el Seminario Teológico Nazareno del Cono Sur',
     icono: 'lucide:graduation-cap',
   },
 

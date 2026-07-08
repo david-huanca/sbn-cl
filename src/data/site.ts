@@ -5,8 +5,8 @@ export const site = {
   description:
     'El Seminario Bíblico Nazareno de Chile es una institución teológica de la Iglesia del Nazareno, comprometida con la formación integral de ministros y líderes para servir en Chile y América Latina.',
   url: 'https://www.sbn.cl',
-  email: 'contacto@sbn.cl',
-  phone: '+56 2 2345 6789',
+  email: 'sbn@samnaz.org',
+  phone: '+56 2 3343 3035',
   address: 'Cleveland 8040, Vitacura',
   social: {
     facebook: 'https://facebook.com/sbncl',
