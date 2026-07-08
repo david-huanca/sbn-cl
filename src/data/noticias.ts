@@ -20,7 +20,7 @@ export const noticias: Noticia[] = [
   {
     titulo: 'Conferencia Internacional de Teología Wesleyana',
     extracto:
-      'Importantes teólogos de toda América Latina se reunieron en nuestro campus para reflexionar sobre los desafíos contemporáneos de la teología wesleyana-nazarena.',
+      'Importantes teólogos de toda América Latina se reunieron en nuestro campus para reflexionar sobre los desafíos contemporáneos de la teología Arminiana-wesleyana.',
     categoria: 'Evento',
     fecha: '2025-02-15',
     imagen: '/images/noticia-2.jpg',
