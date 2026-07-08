@@ -9,8 +9,8 @@ export const site = {
   phone: '+56 2 3343 3035',
   address: 'Cleveland 8040, Vitacura',
   social: {
-    facebook: 'https://facebook.com/sbncl',
-    instagram: 'https://instagram.com/sbncl',
+    facebook: 'https://www.facebook.com/SBNChile/',
+    instagram: 'https://www.instagram.com/sbn_chile',
     youtube: 'https://youtube.com/@sbncl',
   },
   stats: [
