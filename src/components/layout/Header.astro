@@ -5,6 +5,14 @@ const navLinks = [
   { label: 'Programas', href: '#programas' },
   { label: 'Cursos', href: '#cursos' },
 ];
+
+const alumnoUrl = import.meta.env.PUBLIC_SGA_ALUMNO_URL;
+
+const sgaRoles = [
+  { label: 'Alumno', href: alumnoUrl },
+  { label: 'Profesor', href: alumnoUrl },
+  { label: 'Coordinador', href: alumnoUrl },
+];
 ---
 
 <header style="position:sticky; top:0; z-index:60; background:color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
@@ -22,6 +30,26 @@ const navLinks = [
           {link.label}
         </a>
       ))}
+      {alumnoUrl && (
+        <div id="sga-dropdown" style="position:relative;">
+          <button id="sga-dropdown-toggle" type="button"
+             style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; background:#C9A23D; color:#FFFFFF; padding:11px 22px; font-size:15px; font-weight:600; letter-spacing:.01em; border:none; border-radius:4px; cursor:pointer; transition:filter .2s;"
+             onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter=''">
+            Acceso a SGA
+            <span style="display:inline-block; width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:5px solid #FFFFFF;"></span>
+          </button>
+          <div id="sga-dropdown-menu"
+               style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:180px; background:var(--bg); border:1px solid var(--line); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,.12); overflow:hidden; z-index:70;">
+            {sgaRoles.map((role) => (
+              <a href={role.href} target="_blank" rel="noopener noreferrer"
+                 style="display:block; padding:12px 18px; text-decoration:none; color:var(--ink); font-size:15px; transition:background .15s;"
+                 onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='transparent'">
+                {role.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <a href="#contacto"
          style="display:inline-block; text-decoration:none; background:var(--ink); color:var(--bg); padding:11px 22px; font-size:15px; letter-spacing:.01em; transition:filter .2s;"
          onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter=''">
@@ -53,6 +81,21 @@ const navLinks = [
         {link.label}
       </a>
     ))}
+    {alumnoUrl && (
+      <div style="margin-top:12px;">
+        <span style="display:block; text-align:center; text-decoration:none; background:#C9A23D; color:#FFFFFF; font-size:20px; font-weight:600; padding:14px 20px; border-radius:4px;">
+          Acceso a SGA
+        </span>
+        <div style="display:flex; flex-direction:column; gap:2px; margin-top:8px;">
+          {sgaRoles.map((role) => (
+            <a href={role.href} target="_blank" rel="noopener noreferrer" class="mobile-link"
+               style="text-decoration:none; color:var(--ink); font-family:'Cormorant Garamond',serif; font-size:24px; padding:8px 0; text-align:center;">
+              {role.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
   </nav>
   <a href="#contacto" id="mobile-cta"
      style="margin-top:auto; text-align:center; text-decoration:none; background:var(--ink); color:var(--bg); padding:16px; font-size:17px;">
@@ -89,4 +132,18 @@ const navLinks = [
   document.querySelectorAll('.mobile-link').forEach((l) => l.addEventListener('click', closeMenu));
   window.addEventListener('resize', syncLayout);
   syncLayout();
+
+  const sgaToggle = document.getElementById('sga-dropdown-toggle');
+  const sgaMenu = document.getElementById('sga-dropdown-menu');
+  const sgaDropdown = document.getElementById('sga-dropdown');
+
+  if (sgaToggle && sgaMenu && sgaDropdown) {
+    sgaToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sgaMenu.style.display = sgaMenu.style.display === 'block' ? 'none' : 'block';
+    });
+    document.addEventListener('click', (e) => {
+      if (!sgaDropdown.contains(e.target as Node)) sgaMenu.style.display = 'none';
+    });
+  }
 </script>
