@@ -30,13 +30,15 @@ export const POST: APIRoute = async ({ request }) => {
 
   const url = `${import.meta.env.PUBLIC_SGA_HOST}/api/v1/public/contact`;
 
+  // sga-nextjs vuelve a verificar el token de Turnstile por su cuenta (no
+  // confía solo en que este proxy lo haya validado), así que se reenvía.
   const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'X-API-Key': import.meta.env.SGA_API_KEY,
     },
-    body: JSON.stringify(contactData),
+    body: JSON.stringify({ ...contactData, turnstileToken }),
   });
 
   const data = await res.json().catch(() => ({}));

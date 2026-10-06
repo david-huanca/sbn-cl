@@ -46,6 +46,14 @@ const siteKey = isDev
         <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--ink); margin-bottom:6px;">Envíanos un mensaje</div>
         <div style="font-size:14px; color:var(--muted); margin-bottom:28px;">Te responderemos a la brevedad posible.</div>
 
+        <!-- Honeypot anti-spam: invisible para personas, los bots que rellenan
+             todos los inputs del DOM suelen completarlo. Si llega con valor,
+             el backend descarta el envío en silencio. -->
+        <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+          <label for="website">No completar este campo</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:20px;">
           <div style="display:flex; flex-direction:column; gap:7px;">
             <label for="nombre" style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted);">Nombre *</label>
@@ -181,6 +189,7 @@ const siteKey = isDev
       iglesia: (form.iglesia as HTMLInputElement).value || undefined,
       tipo: (form.tipo as HTMLSelectElement).value,
       mensaje: (form.mensaje as HTMLTextAreaElement).value,
+      website: (form.website as HTMLInputElement).value || undefined,
       turnstileToken,
     };
 
